@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+        <script src="https://pay.sandbox.datatrans.com/upp/payment/js/secure-fields-2.0.0.min.js"></script>
+    </header>
+    <body>
+        <code>
+
+        </code>
+
+        <form>
+            <div>
+                <div>
+                    <label for="cardNumberPlaceholder">Card Number</label>
+                    <!-- card number container -->
+                    <div id="cardNumberPlaceholder" style="width: 250px;"></div>
+                </div>
+                <div>
+                    <label for="cvvPlaceholder">Cvv</label>
+                    <!-- cvv container -->
+                    <div id="cvvPlaceholder" style="width: 90px;"></div>
+                </div>
+                <button type="button" id="go">Pay!</button>
+            </div>
+        </form>
+
+        <script type="text/javascript">
+            window.onload = () => {
+                    const styles = {
+                    '*': `border: 1px solid #D9D9D9; padding: 12px; padding-left: 16px; padding-right: 16px; border-radius: 10px; background-color: white;`,
+                    'input': 'height: 64px; font-family: sans-serif; letter-spacing: 0.05em;'
+                };
+
+                console.log('card number', document.querySelector('#cardNumberPlaceholder'));
+                console.log('cvv', document.querySelector('#cvvPlaceholder'));
+
+                const secureFields = new SecureFields();
+                secureFields.initTokenize(
+                    '1100002860',
+                    {
+                        cardNumber: {
+                            placeholderElementId: 'cardNumberPlaceholder',
+                            placeholder: 'Card Number',
+                        },
+                        cvv: {
+                            placeholderElementId: 'cvvPlaceholder',
+                            placeholder: 'CVV',
+                        },
+                    },
+                    {
+                        styles,
+                    },
+                );
+            };
+        </script>
+    </body>
+</html>
