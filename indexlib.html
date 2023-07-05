@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Payment Test Application</title>
+    <!-- <base href="/"> -->
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="28d8351e-0f37-4363-a339-f76b8a18c15f" data-blockingmode="auto" type="text/javascript"></script>
+    <script src="kognitiv-payment.js"></script>
+</head>
+
+<body>
+    <button id="btn-init-payment" onclick="onStartPayment()">Initialize payment</button>
+
+    <br /><br />
+    <hr />
+    
+    <div>
+        Result:
+        <br />
+        <div id="result-status"></div>
+        <div id="result-data"></div>
+    </div>
+
+    <script>
+        let kognitivPayment;
+
+        function onStartPayment() {
+            const settings = {
+                callbackMethod: paymentHandler,
+                debug: true,
+                extra: {},
+                language: "",
+                messagingMiddleware: { domain: 'https://ibe-dev.seekda.com' },
+            };
+
+            const providerSettings = {
+                allowedCcTypeCodes: ['discover', 'amex', 'diners', 'visa', 'mastercard'],
+                allowedMethods: [{
+                    code: null,
+                    logo: "https://res.cloudinary.com/seekda/image/upload/v1599643264/paymentProvider/datatrans/visa-mastercard-certified.svg",
+                    text: null,
+                    textUrl: null,
+                }],
+                is_test_Mode: true,
+                logo: null,
+                merchantId: "1100002860",
+                needsPostCheckoutPayment: false,
+                paymentPartnerInfo: "Dynamisch Super Revolution kümmert sich um die Kreditkartenzahlungsabwicklung.",
+                provider: "pciproxy",
+                sign: "160912142152006697",
+                transaction: { id: '', extra: null },
+            };
+
+            kognitivPayment = new KognitivPayment();
+            kognitivPayment.init(providerSettings, settings);
+        }
+
+        function paymentHandler(result) {
+            switch (result.operation) {
+                case 'init':
+                    console.log('init', result);
+                    break;
+
+                case 'payment':
+                    handleEvent('payment', result);
+                    kognitivPayment.reset();
+                    break;
+
+                case 'popup':
+                    console.log('popup', result);
+                    break;
+
+                default:
+            }
+        }
+
+        function handleEvent(type, result) {
+            const resultStatus = document.getElementById('result-status');
+            const resultData = document.getElementById('result-data');
+
+            result = JSON.stringify(result);
+
+            resultStatus.innerText = type;
+            resultData.innerText = result;
+        }
+    </script>
+    
+    <script id="CookieDeclaration" src="https://consent.cookiebot.com/28d8351e-0f37-4363-a339-f76b8a18c15f/cd.js" type="text/javascript" async></script>
+</body>
