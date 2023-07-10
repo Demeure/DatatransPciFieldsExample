@@ -8,16 +8,37 @@
     <title>Payment Test Application</title>
     <!-- <base href="/"> -->
 
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="28d8351e-0f37-4363-a339-f76b8a18c15f" data-blockingmode="auto" type="text/javascript"></script>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WCMTJDX');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Martin's original -->
+    <!-- <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="28d8351e-0f37-4363-a339-f76b8a18c15f" data-blockingmode="auto" type="text/javascript"></script> -->
+    <!-- Milo cookie-bot script -->
+    <!-- <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="cb953749-2e27-4ebd-b789-499df3d2669d" data-blockingmode="auto" type="text/javascript"></script> -->
+
     <script src="https://payment-dev.kognitiv.com/lib/kognitiv-payment.js"></script>
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCMTJDX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <button id="btn-init-payment" onclick="onStartPayment()">Initialize payment</button>
 
     <br /><br />
     <hr />
-    
+
     <div>
         Result:
         <br />
@@ -88,6 +109,12 @@
             resultData.innerText = result;
         }
     </script>
+
+     
+    <!-- Martin's original -->
+    <!-- <script id="CookieDeclaration" src="https://consent.cookiebot.com/28d8351e-0f37-4363-a339-f76b8a18c15f/cd.js"
+        type="text/javascript" async></script> -->
     
-    <script id="CookieDeclaration" src="https://consent.cookiebot.com/28d8351e-0f37-4363-a339-f76b8a18c15f/cd.js" type="text/javascript" async></script>
+    <!-- Milo script -->
+    <!-- <script id="CookieDeclaration" src="https://consent.cookiebot.com/cb953749-2e27-4ebd-b789-499df3d2669d/cd.js" type="text/javascript" async></script> -->
 </body>
